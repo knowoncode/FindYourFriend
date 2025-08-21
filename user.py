@@ -8,7 +8,7 @@ class UserOperation:
         con = sql.connect(host='mysql-13895a0a-knowon-43fc.f.aivencloud.com',port='14619',user='avnadmin',password='AVNS_OhXlk3ZcwW08DrVLo_V',database='defaultdb')
         return con
     
-    # --- Create Table if not exists ---
+    # --- Create User Table if not exists ---
     def create_user_table(self):
         db = self.connect()
         cur = db.cursor()
@@ -99,6 +99,23 @@ class UserOperation:
         
         return False
     
+    # --- Create Friend Table if not exists ---
+    def create_friend_table(self):
+        db = self.connect()
+        cur = db.cursor()
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS friend (
+                friendID int AUTO_INCREMENT PRIMARY KEY,
+                userEmail varchar(255) DEFAULT NULL,
+                name varchar(255) DEFAULT NULL,
+                friendEmail varchar(255) DEFAULT NULL,
+            )
+        """)
+        db.commit()
+        cur.close()
+        db.close()
+        return
+
     def addFriend(self,name,friendEmail):
         db = self.connect()
         cur = db.cursor()
@@ -156,6 +173,24 @@ class UserOperation:
         data = cur.fetchall()
         return data
 
+    # --- Create Friend Location Table if not exists ---
+    def create_friendLocation_table(self):
+        db = self.connect()
+        cur = db.cursor()
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS locationrequest (
+                flocationRequestID int AUTO_INCREMENT PRIMARY KEY,
+                userEmail varchar(255) DEFAULT NULL,
+                friendEmail varchar(255) DEFAULT NULL,
+                requestDate date DEFAULT NULL,
+                status int DEFAULT '0',
+            )
+        """)
+        db.commit()
+        cur.close()
+        db.close()
+        return
+    
     def friendLocationRequest(self,friendEmail):
         db = self.connect()
         cur = db.cursor()
