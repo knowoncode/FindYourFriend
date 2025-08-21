@@ -5,7 +5,7 @@ from datetime import date
 
 class UserOperation:
     def connect(self):
-        con = sql.connect(host='mysql-13895a0a-knowon-43fc.f.aivencloud.com',port='14619',user='avnadmin',password='AVNS_hon-I5CjtN3cwrODETS',database='defaultdb')
+        con = sql.connect(host='mysql-13895a0a-knowon-43fc.f.aivencloud.com',port='14619',user='avnadmin',password='AVNS_OhXlk3ZcwW08DrVLo_V',database='defaultdb')
         return con
     
     # --- Create Table if not exists ---
