@@ -41,7 +41,7 @@ class UserOperation:
                 userEmail varchar(255) DEFAULT NULL,
                 friendEmail varchar(255) DEFAULT NULL,
                 requestDate date DEFAULT NULL,
-                status int DEFAULT '0',
+                status int DEFAULT '0'
             )
         """)
         db.commit()
@@ -58,7 +58,7 @@ class UserOperation:
                 friendID int AUTO_INCREMENT PRIMARY KEY,
                 userEmail varchar(255) DEFAULT NULL,
                 name varchar(255) DEFAULT NULL,
-                friendEmail varchar(255) DEFAULT NULL,
+                friendEmail varchar(255) DEFAULT NULL
             )
         """)
         db.commit()
