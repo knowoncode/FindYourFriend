@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Your Friend - Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+    }
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background: #343a40;
+      color: #fff;
+      transition: all 0.3s;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-x: hidden;
+    }
+    .sidebar.collapsed {
+      width: 70px;
+    }
+    .sidebar .nav-link {
+      color: #adb5bd;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      transition: 0.3s;
+    }
+    .sidebar .nav-link:hover {
+      background: #495057;
+      color: #fff;
+    }
+    .sidebar .nav-link i {
+      margin-right: 15px;
+      font-size: 1.2rem;
+    }
+    .sidebar.collapsed .nav-link span {
+      display: none;
+    }
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+      transition: all 0.3s;
+    }
+    .main-content.collapsed {
+      margin-left: 70px;
+    }
+    .top-bar {
+      height: 60px;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .toggle-btn {
+      font-size: 24px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="text-center py-3">
+      <h5 class="text-white d-none d-md-block">👤 {{session['userName']}}</h5>
+    </div>
+    <a href="/userDash" class="nav-link"><i class="bi bi-house-door"></i><span>Dashboard</span></a>
+    <a href="/addFriend" class="nav-link"><i class="bi bi-person-fill-add"></i><span>Add Friend</span></a>
+    <a href="/userLocation" class="nav-link"><i class="bi bi-geo-alt"></i><span>Send My Location</span></a>
+    <a href="/friendLocation" class="nav-link"><i class="bi bi-bullseye"></i><span>Location Request</span></a>
+    <a href="/userProfile" class="nav-link"><i class="bi bi-person-lines-fill"></i><span>My Profile</span></a>
+    
+    <a href="/userLogout" class="nav-link"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content" id="main-content">
+    <div class="top-bar">
+      <span class="toggle-btn" onclick="toggleSidebar()"><i class="bi bi-list"></i></span>
+      <h5 class="ms-3 mb-0">Find Your Friend - Dashboard</h5>
+    </div>
+    <div class="container-fluid mt-4">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("collapsed");
+      document.getElementById("main-content").classList.toggle("collapsed");
+    }
+  </script>
+
+</body>
+</html>

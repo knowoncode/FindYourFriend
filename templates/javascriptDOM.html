@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="show()">click me</button>
+    <p id="msg"></p>
+    <script>
+        function show(){
+            document.getElementById('msg').innerText="hello javascript!!";
+        }
+
+        setInterval(function() {
+            console.log("This runs after 2 seconds");
+            console.log("testing...");
+        }, 2000);  // 2000 ms = 2 seconds
+    </script>
+</body>
+</html>
