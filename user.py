@@ -4,6 +4,11 @@ from datetime import date
 
 
 class UserOperation:
+    def __init__(self):
+        self.create_user_table()
+        self.create_friend_table()
+        self.create_friendLocation_table()
+
     def connect(self):
         con = sql.connect(host='mysql-13895a0a-knowon-43fc.f.aivencloud.com',port='14619',user='avnadmin',password='AVNS_OhXlk3ZcwW08DrVLo_V',database='defaultdb')
         return con
@@ -26,8 +31,42 @@ class UserOperation:
         db.close()
         return
 
+    # --- Create Friend Location Table if not exists ---
+    def create_friendLocation_table(self):
+        db = self.connect()
+        cur = db.cursor()
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS locationrequest (
+                flocationRequestID int AUTO_INCREMENT PRIMARY KEY,
+                userEmail varchar(255) DEFAULT NULL,
+                friendEmail varchar(255) DEFAULT NULL,
+                requestDate date DEFAULT NULL,
+                status int DEFAULT '0',
+            )
+        """)
+        db.commit()
+        cur.close()
+        db.close()
+        return
+
+    # --- Create Friend Table if not exists ---
+    def create_friend_table(self):
+        db = self.connect()
+        cur = db.cursor()
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS friend (
+                friendID int AUTO_INCREMENT PRIMARY KEY,
+                userEmail varchar(255) DEFAULT NULL,
+                name varchar(255) DEFAULT NULL,
+                friendEmail varchar(255) DEFAULT NULL,
+            )
+        """)
+        db.commit()
+        cur.close()
+        db.close()
+        return
+
     def userInsert(self,firstName,lastName,email,mobile,password):
-        self.create_user_table()
         db = self.connect()
         cur = db.cursor()
         sq = "insert into user (firstName,lastName,email,mobile,password) values(%s,%s,%s,%s,%s)"
@@ -98,23 +137,6 @@ class UserOperation:
             return True
         
         return False
-    
-    # --- Create Friend Table if not exists ---
-    def create_friend_table(self):
-        db = self.connect()
-        cur = db.cursor()
-        cur.execute("""
-            CREATE TABLE IF NOT EXISTS friend (
-                friendID int AUTO_INCREMENT PRIMARY KEY,
-                userEmail varchar(255) DEFAULT NULL,
-                name varchar(255) DEFAULT NULL,
-                friendEmail varchar(255) DEFAULT NULL,
-            )
-        """)
-        db.commit()
-        cur.close()
-        db.close()
-        return
 
     def addFriend(self,name,friendEmail):
         db = self.connect()
@@ -173,23 +195,6 @@ class UserOperation:
         data = cur.fetchall()
         return data
 
-    # --- Create Friend Location Table if not exists ---
-    def create_friendLocation_table(self):
-        db = self.connect()
-        cur = db.cursor()
-        cur.execute("""
-            CREATE TABLE IF NOT EXISTS locationrequest (
-                flocationRequestID int AUTO_INCREMENT PRIMARY KEY,
-                userEmail varchar(255) DEFAULT NULL,
-                friendEmail varchar(255) DEFAULT NULL,
-                requestDate date DEFAULT NULL,
-                status int DEFAULT '0',
-            )
-        """)
-        db.commit()
-        cur.close()
-        db.close()
-        return
     
     def friendLocationRequest(self,friendEmail):
         db = self.connect()
