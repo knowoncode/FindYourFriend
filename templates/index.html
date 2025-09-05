@@ -9,13 +9,12 @@
       <a href="/userSignup" class="btn btn-primary btn-lg my-3">Get Started</a>
     </div>
 <!--     langflow AI Agent -->
-    <script
-  src="https://cdn.jsdelivr.net/gh/logspace-ai/langflow-embedded-chat@v1.0.7/dist/build/static/js/bundle.min.js">
-</script>
+   
   <langflow-chat
     window_title="Simple Agent"
     flow_id="e0298177-5c3c-49e3-8eb7-4eb22ff03bdc"
-    host_url="https://astra.datastax.com">
+    host_url="https://astra.datastax.com"
+    api_key="AstraCS:JPPFTFXxXIeGZjIrysqeXanU:835f0030df28ebc77506d613ca702f7c051b6c637506e2920dd299a7206eb638">
 </langflow-chat>
 <!--     end langflow -->
   </section>
@@ -47,4 +46,8 @@
   <section class="container my-5">
     <img class='img-fluid' src="../static/images/bg2.jpg" alt="">
   </section>
+<!-- for langflow AI Agent -->
+ <script
+  src="https://cdn.jsdelivr.net/gh/logspace-ai/langflow-embedded-chat@v1.0.7/dist/build/static/js/bundle.min.js">
+</script>
 {% endblock %}
