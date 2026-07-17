@@ -10,7 +10,7 @@ class UserOperation:
         self.create_friendLocation_table()
 
     def connect(self):
-        con = sql.connect(host='mysql-13895a0a-knowon-43fc.f.aivencloud.com',port='14619',user='avnadmin',password='AVNS_OhXlk3ZcwW08DrVLo_V',database='defaultdb')
+        con = sql.connect(host='mysql-13895a0a-knowon-43fc.f.aivencloud.com',port=14619,user='avnadmin',password='AVNS_OhXlk3ZcwW08DrVLo_V',database='defaultdb')
         return con
     
     # --- Create User Table if not exists ---
